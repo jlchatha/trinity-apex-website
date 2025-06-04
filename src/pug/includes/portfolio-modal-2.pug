@@ -1,0 +1,26 @@
+// Portfolio Modal 2
+#portfolioModal2.portfolio-modal.modal.fade(tabindex='-1', aria-labelledby='portfolioModal2', aria-hidden='true')
+    .modal-dialog.modal-xl
+        .modal-content
+            .modal-header.border-0
+                button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
+            .modal-body.text-center.pb-5
+                .container
+                    .row.justify-content-center
+                        .col-lg-8
+                            // Portfolio Modal - Title
+                            h2.portfolio-modal-title.text-secondary.text-uppercase.mb-0 Cloud Infrastructure Solutions
+                            // Icon Divider
+                            .divider-custom
+                                .divider-custom-line
+                                .divider-custom-icon
+                                    i.fas.fa-star
+                                .divider-custom-line
+                            // Portfolio Modal - Image
+                            img.img-fluid.rounded.mb-5(src='assets/img/portfolio/cake.png', alt='...')
+                            // Portfolio Modal - Text
+                            p.mb-4
+                                | Our enterprise-grade cloud infrastructure solutions provide scalable, secure, and cost-effective platforms for businesses of all sizes. Leveraging AWS, Azure, and Google Cloud, we architect resilient systems that grow with your business needs.
+                            button.btn.btn-primary(data-bs-dismiss='modal')
+                                i.fas.fa-xmark.fa-fw
+                                | Close Window

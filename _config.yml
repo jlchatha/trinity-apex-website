@@ -1,0 +1,31 @@
+# Site settings
+title: Trinity Apex LLC
+email: info@trinityapexllc.com
+description: >-
+  Trinity Apex LLC - Building tomorrow's digital infrastructure today. 
+  Innovative software solutions for the modern world.
+baseurl: ""
+url: "https://jlchatha.github.io/trinity-apex-website"
+
+# Social media
+twitter_username: trinityapexllc
+github_username: jlchatha
+linkedin_username: trinityapexllc
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude from build
+exclude:
+  - node_modules
+  - package.json
+  - package-lock.json
+  - scripts
+  - src/scss
+  - .gitignore
+  - README.md
