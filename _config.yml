@@ -1,31 +1,64 @@
 # Site settings
 title: Trinity Apex LLC
-email: info@trinityapexllc.com
-description: >-
-  Trinity Apex LLC - Building tomorrow's digital infrastructure today. 
-  Innovative software solutions for the modern world.
-baseurl: ""
-url: "https://jlchatha.github.io/trinity-apex-website"
+email: apex@trinity-apex.com
+url: https://trinityapex.ai
+description: "Transparent AI Solutions for Growing Businesses"
+keywords: "AI, Consulting, Transparent AI, SMB Solutions"
+skills: "Human + AI + Systems"
+meta_author: Trinity Apex LLC
 
-# Social media
-twitter_username: trinityapexllc
-github_username: jlchatha
-linkedin_username: trinityapexllc
+# Google webmaster tools
+google_verify:
+
+# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
+bing_verify:
+
+# Contact form:
+# - static : pass through formspree.io to validate email sending
+# - disqus : replace contact form by disqus thread
+# - comment the line below if you want to stick with the default PHP contact form
+contact: static
+
+# If you use disqus you need disqus shortname
+# https://help.disqus.com/customer/portal/articles/466208
+disqus_shortname: myshortname
+
+# Color settings (hex-codes without the leading hash-tag)
+color:
+  primary: 1e3a8a #Trinity blue
+  primary-rgb: "30,58,138"
+  secondary: f59e0b #Amber accent
+  secondary-dark: d97706
+
+# Footer settings
+footer:
+  copyright: Trinity Apex LLC
+  location: Location
+  social: Connect
+  credits: null
+
+# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
+social:
+  - title: envelope
+    url: mailto:apex@trinity-apex.com
+  - title: github
+    url: https://github.com/jlchatha
+
+# Postal address (add as many lines as necessary)
+address:
+  - line: Arizona
+
+# Credits content
+credits: null
 
 # Build settings
 markdown: kramdown
-theme: minima
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-seo-tag
+permalink: pretty
 
-# Exclude from build
-exclude:
-  - node_modules
-  - package.json
-  - package-lock.json
-  - scripts
-  - src/scss
-  - .gitignore
-  - README.md
+#for posts
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      permalink: ""
