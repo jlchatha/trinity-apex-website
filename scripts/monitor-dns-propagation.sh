@@ -2,9 +2,13 @@
 # Script to monitor DNS propagation for trinityapex.ai
 # UNIT 3-4 Implementation (June 6, 2025)
 
-echo "==================================================================="
-echo "Trinity Apex DNS Propagation Monitor"
-echo "==================================================================="
+# Set polling interval in seconds
+POLLING_INTERVAL=300  # 5 minutes
+
+# Function to display timestamp
+timestamp() {
+  date +"%Y-%m-%d %H:%M:%S"
+}
 
 # Function to check DNS records
 check_dns() {
@@ -49,20 +53,47 @@ check_website() {
   echo ""
 }
 
-# Check DNS and website status
-echo "=== DNS Records ==="
-check_dns "www.trinityapex.ai" "CNAME"
-check_dns "trinityapex.ai" "A"
+# Function to check SSL certificate
+check_ssl() {
+  local domain=$1
+  echo "Checking SSL certificate for $domain..."
+  
+  if openssl s_client -connect "$domain":443 -servername "$domain" < /dev/null > /dev/null 2>&1; then
+    cert_info=$(openssl s_client -connect "$domain":443 -servername "$domain" < /dev/null 2>/dev/null | openssl x509 -noout -dates -issuer -subject)
+    echo "$cert_info"
+  else
+    echo "❌ Could not connect to $domain on port 443"
+  fi
+  
+  echo ""
+}
 
-echo "=== Website Availability ==="
-check_website "https://www.trinityapex.ai"
-check_website "https://trinityapex.ai"
-
-echo "=== SSL Certificate Information ==="
-echo "Checking SSL certificate for www.trinityapex.ai..."
-openssl s_client -connect www.trinityapex.ai:443 -servername www.trinityapex.ai < /dev/null 2>/dev/null | openssl x509 -noout -dates -issuer -subject
-
-echo ""
-echo "DNS propagation can take up to 48 hours to complete worldwide."
-echo "Run this script periodically to monitor progress."
-echo "==================================================================="
+# Main monitoring loop
+while true; do
+  clear
+  echo "==================================================================="
+  echo "Trinity Apex DNS Propagation Monitor - $(timestamp)"
+  echo "==================================================================="
+  echo "Polling every $POLLING_INTERVAL seconds. Press Ctrl+C to stop."
+  echo ""
+  
+  # Check DNS and website status
+  echo "=== DNS Records ==="
+  check_dns "www.trinityapex.ai" "CNAME"
+  check_dns "trinityapex.ai" "A"
+  
+  echo "=== Website Availability ==="
+  check_website "https://www.trinityapex.ai"
+  check_website "https://trinityapex.ai"
+  
+  echo "=== SSL Certificate Information ==="
+  check_ssl "www.trinityapex.ai"
+  
+  echo "DNS propagation can take up to 48 hours to complete worldwide."
+  echo "This script will continue checking every $((POLLING_INTERVAL / 60)) minutes."
+  echo "Press Ctrl+C to stop monitoring."
+  echo "==================================================================="
+  
+  # Wait for the polling interval
+  sleep $POLLING_INTERVAL
+done
