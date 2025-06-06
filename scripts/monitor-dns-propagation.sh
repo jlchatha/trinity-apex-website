@@ -82,6 +82,10 @@ while true; do
   check_dns "www.trinityapex.ai" "CNAME"
   check_dns "trinityapex.ai" "A"
   
+  echo "=== ACM Verification CNAME Check ==="
+  echo "Checking verification CNAME record..."
+  check_dns "CNAME_2eaaafe116dcad46242395f4b68b6c42.trinityapex.ai" "CNAME"
+  
   echo "=== Website Availability ==="
   check_website "https://www.trinityapex.ai"
   check_website "https://trinityapex.ai"
